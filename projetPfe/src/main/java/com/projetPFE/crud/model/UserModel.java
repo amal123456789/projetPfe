@@ -5,31 +5,49 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "user")
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Document(indexName = "userint", createIndex = true)
 
 public class UserModel {
 	@Id
 	private int id;
+	//@JsonProperty("cin")
+
 	@Field(type = FieldType.Text)
 	private String cin;
+	  // @JsonProperty("firstname")
+
 	@Field(type = FieldType.Text)
 
 	private String firstName;
+	  // @JsonProperty("lastname")
+
 	@Field(type = FieldType.Text)
 
 	private String lastName;
+	  // @JsonProperty("phone")
+
 	@Field(type = FieldType.Text)
 
 	private String phone;
+	   //@JsonProperty("mail")
+
 	@Field(type = FieldType.Text)
 
 	private String mail;
+	  // @JsonProperty("login")
+
 	@Field(type = FieldType.Text)
 
 	private String login;
+	   //@JsonProperty("password")
+
 	@Field(type = FieldType.Text)
 
 	private String password;
+	 //  @JsonProperty("role")
+
 	@Field(type = FieldType.Text)
 
 		
@@ -51,6 +69,14 @@ public class UserModel {
 		this.login = login;
 		this.password = password;
 		this.role = role;
+	}
+
+	public UserModel(String firstName2, int id2, String lastName2) {
+		// TODO Auto-generated constructor stub
+		this.firstName = firstName;
+		this.id = id;
+
+		this.lastName = lastName;
 	}
 
 	public int getId() {
@@ -123,6 +149,66 @@ public class UserModel {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "UserModel [id=" + id + ", cin=" + cin + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", phone=" + phone + ", mail=" + mail + ", login=" + login + ", password=" + password + ", role="
+				+ role + "]";
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserModel other = (UserModel) obj;
+		if (cin == null) {
+			if (other.cin != null)
+				return false;
+		} else if (!cin.equals(other.cin))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
+		if (mail == null) {
+			if (other.mail != null)
+				return false;
+		} else if (!mail.equals(other.mail))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
+			return false;
+		if (role != other.role)
+			return false;
+		return true;
 	}
 
 

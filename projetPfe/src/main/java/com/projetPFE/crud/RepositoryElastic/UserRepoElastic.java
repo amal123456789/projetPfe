@@ -1,7 +1,7 @@
 package com.projetPFE.crud.RepositoryElastic;
 
 import java.awt.print.Pageable;
-
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.annotations.Query;
@@ -20,8 +20,9 @@ public interface UserRepoElastic extends ElasticsearchRepository<UserModel, Inte
 	public boolean existsById(int id);
 
 	public boolean existsByLastName(String lastName);
+	List<UserModel> findUserModelByFirstName(String firstName);
+
 	
-
-
+	
 }
 

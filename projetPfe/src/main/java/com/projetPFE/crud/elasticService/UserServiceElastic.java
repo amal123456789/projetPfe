@@ -1,11 +1,16 @@
 package com.projetPFE.crud.elasticService;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.projetPFE.crud.RepositoryElastic.UserRepoElastic;
 import com.projetPFE.crud.entity.User;
@@ -15,6 +20,36 @@ public class UserServiceElastic {
 	@Autowired
 	UserRepoElastic userRepoElastic ;
 	
+	
+	
+	///////////////*************************test
+	
+	@Autowired
+	   ElasticsearchOperations operations;
+
+	public void indexData(){
+	       System.out.println("start data indexing**********");
+	       operations.putMapping(UserModel.class);
+	       System.out.println("Loading Data Employee");
+	       userRepoElastic.saveAll(getData());
+	       System.out.printf("Loading Completed");
+	   }
+
+	   private Iterable<UserModel> getData() {
+	       List<UserModel> list = new ArrayList<UserModel>();
+	       Iterable<UserModel> emps = userRepoElastic.findAll();
+	       emps.forEach(list::add);
+	       return emps;
+	   }
+	
+	/////////////////////test
+	   
+
+	   
+	/*public List<UserModel> getUserByFistname(String firstname){
+		return userRepoElastic.findUserModelByFirstName(firstname);
+	}*/
+/////////////////////test
 	
 	public List<User> getAllUsers(){
 		 try {

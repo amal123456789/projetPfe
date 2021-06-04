@@ -23,10 +23,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-@EntityScan(basePackages = "com.projetPFE.crud.entity")
+//@EntityScan(basePackages = "com.projetPFE.crud.entity")
 
 @SpringBootApplication
-@ComponentScan
+//@ComponentScan
 public class ProjetPfeApplication {
 
     //private static final Logger logger = LogManager.getLogger(ProjetPfeApplication.class);
@@ -34,7 +34,7 @@ public class ProjetPfeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetPfeApplication.class, args);
 		
-	}
+	}}
 	/*public void run(ApplicationArguments applicationArguments) throws Exception {
         logger.debug("Debugging log");
         logger.info("Info log");
@@ -43,7 +43,7 @@ public class ProjetPfeApplication {
         logger.fatal("Damn! Fatal error. Please fix me.");
     }*/
 
-	@Bean
+	/*@Bean
 	public boolean createTestIndex(RestHighLevelClient restHighLevelClient) throws Exception {
 		try {
 			DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest("projet-pfe");

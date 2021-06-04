@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.4</version>
+		<version>2.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.projetPFE</groupId>
@@ -24,12 +24,16 @@
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
         
-<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch -->
-<dependency>
-    <groupId>org.elasticsearch</groupId>
-    <artifactId>elasticsearch</artifactId>
-    <version>7.11.1</version>
-</dependency>
+<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
+
+
+
+
+
+
+
+
+ -->
 
 
         <dependency>
