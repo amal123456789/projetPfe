@@ -44,16 +44,10 @@ public class UserControllerElastic {
 	@Autowired
 	UserServiceElastic serviceElastic ;
 	
-	/*@RequestMapping(value = "getedall", method = RequestMethod.GET)
-
-	public List<User>  gettinallusers(){
-		return serviceElastic.getAllUsers();
-		
-	}*/
 	
 	
 	
-	///////////***********test test test
+	///////////***********this  the right code
 	
 	@Autowired
 	UserRepoElastic userRepoElastic ;
@@ -70,10 +64,21 @@ public class UserControllerElastic {
 	}
 	
 	
-	@PostMapping("/add")
-	public UserModel addStudent(@RequestBody UserModel student ){
-		return userRepoElastic.save(student);
+	@PostMapping("/ajouter")
+	public String addUserModel(@RequestBody UserModel user) {
+		try {
+			if (!userRepoElastic.existsById(user.getId())) {
+				userRepoElastic.save(user);
+				return "Employee added successfully";
+			}else {
+				return "This employee already exists in the database.";
+			}
+		}catch (Exception e) {
+			throw e;
+		}
 	}
+	
+	
 
 	
 	@GetMapping("/getus/{id}")
@@ -161,25 +166,14 @@ public class UserControllerElastic {
         return "Welcome to Spring Boot Elastic Search Example";
     }
 	
-	@RequestMapping(value = "/user/_search", method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<User> getAllUSERSs(){
-		return serviceElastic.getAllUsers();
-	}
 	
-	@RequestMapping(value = "/user/adddocu", method = RequestMethod.POST)
-	public String addUser(@RequestBody UserModel user) {
-		return serviceElastic.addUser(user);
-	}
 	
-	@RequestMapping(value = "/user/_doc/{id}/_update?pretty", method = RequestMethod.PUT)
+	@RequestMapping(value = "/updateing/{id}", method = RequestMethod.PUT)
 	public String updateUser(@RequestBody UserModel user) {
 		return serviceElastic.updateUser(user);
 	}
 	
-	@RequestMapping(value = "/user/_doc/{id}", method = RequestMethod.DELETE)
-	public String removeUser(@RequestBody UserModel user) {
-		return serviceElastic.removeUser(user);
-	}
+	
 	
 	
 	

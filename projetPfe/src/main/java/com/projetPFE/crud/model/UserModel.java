@@ -1,5 +1,8 @@
 package com.projetPFE.crud.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -7,10 +10,11 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Document(indexName = "userint", createIndex = true)
+@Document(indexName = "user_new", createIndex = true)
 
 public class UserModel {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	//@JsonProperty("cin")
 

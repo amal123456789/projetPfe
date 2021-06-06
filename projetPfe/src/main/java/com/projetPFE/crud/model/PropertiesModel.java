@@ -1,21 +1,37 @@
 package com.projetPFE.crud.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+@Document(indexName = "properties_new", createIndex = true)
 
 public class PropertiesModel {
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	
 private int idProperty;
-	
+	@Field(type = FieldType.Text)
+
 	private String codeProp;
+	@Field(type = FieldType.Text)
+
 	private String propName;
+	@Field(type = FieldType.Text)
+
 	private String classe;
 	
 	
-	@ManyToOne
-	  @JoinColumn(name="sourcepropertiesmodel")
+	//@ManyToOne
+	 // @JoinColumn(name="sourcepropertiesmodel")
+	@Field(type = FieldType.Nested)
+
 	  private SourcePropertiesModel sourceproperties;
 
 

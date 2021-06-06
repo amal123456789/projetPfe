@@ -2,20 +2,38 @@ package com.projetPFE.crud.model;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
+
+@Document(indexName = "sourceproperty_new", createIndex = true)
 
 
 public class SourcePropertiesModel {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idSourceprop;
+	@Field(type = FieldType.Text)
+
 	private String value;
+	@Field(type = FieldType.Text)
+
 	private String loginModif;
+	@Field(type = FieldType.Date, format = DateFormat.basic_date)
+
 	private Date dateModif;
 	
-	@ManyToOne
-	  @JoinColumn(name="propertiesmodel")
+	//@ManyToOne
+	 // @JoinColumn(name="propertiesmodel")
+	@Field(type = FieldType.Nested)
+
 	  private PropertiesModel properties;
 
 	public SourcePropertiesModel() {

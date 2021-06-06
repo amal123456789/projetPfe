@@ -1,22 +1,37 @@
 package com.projetPFE.crud.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
+
+@Document(indexName = "datadestination_new", createIndex = true)
 
 public class DataDestinationModel {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_Destination;
+	@Field(type = FieldType.Text)
 	private String ipAdressDestination;
+	@Field(type = FieldType.Text)
 	private String portDestination;
+	@Field(type = FieldType.Text)
 	private String descritpionDestination;
+	@Field(type = FieldType.Text)
 	private String numUserDestination;
+	@Field(type = FieldType.Text)
 	private String passwordDestination;
 	
 	
-	@ManyToOne
-	  @JoinColumn(name="datasourcemodel")
+	//@ManyToOne
+	  //@JoinColumn(name="datasourcemodel")
+	@Field(type = FieldType.Nested)
 	  private DataSourceModel datasource;
 
 

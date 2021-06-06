@@ -1,28 +1,46 @@
 package com.projetPFE.crud.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 //@Document(indexName = "user")
+@Document(indexName = "datasource_new", createIndex = true)
 
 public class DataSourceModel {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idSourceSequence;
+	@Field(type = FieldType.Text)
+
 	private String schemaUrl;
+	@Field(type = FieldType.Text)
+
 	private String systemName;
+	@Field(type = FieldType.Text)
+
 	private String systemCode;
+	@Field(type = FieldType.Text)
+
 	private String descritpionSource;
 	
 	
 	
-	@ManyToOne
-	  @JoinColumn(name="usermodel")
+	//@ManyToOne
+	  //@JoinColumn(name="usermodel")
+	@Field(type = FieldType.Nested)
 	  private UserModel utilisateur;
 
 	
-	@ManyToOne
-	  @JoinColumn(name="datadestinationmodel")
+	//@ManyToOne
+	  //@JoinColumn(name="datadestinationmodel")
+	@Field(type = FieldType.Nested)
 	  private DataDestinationModel datadestination;
 
 
