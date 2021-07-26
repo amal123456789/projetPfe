@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.projetPFE.crud.RepositoryElastic.UserRepoElastic;
 import com.projetPFE.crud.elasticService.UserServiceElastic;
 import com.projetPFE.crud.entity.User;
+import com.projetPFE.crud.model.DataSourceModel;
 import com.projetPFE.crud.model.UserModel;
 
 
@@ -78,8 +79,16 @@ public class UserControllerElastic {
 		}
 	}
 	
-	
 
+	@RequestMapping(value = "updateuserelastic", method = RequestMethod.PUT)
+	public String updateDataSource(@RequestBody UserModel user) {
+		return  serviceElastic.updateUser(user);
+	}
+
+	@RequestMapping(value = "deleteuser", method = RequestMethod.DELETE)
+	public String removeUser(@RequestBody UserModel user) {
+		return serviceElastic.removeUser(user);
+	}
 	
 	@GetMapping("/getus/{id}")
 	public Optional<UserModel> getStudent(@PathVariable Integer id){
@@ -87,7 +96,9 @@ public class UserControllerElastic {
 	}
 	
 	
-	@PutMapping("/updated/{id}")
+	
+	
+	/*@PutMapping("/updated/{id}")
 	   public UserModel updateStudent(@PathVariable Integer id,@RequestBody UserModel student){
 		   Optional<UserModel> std= userRepoElastic.findById(id);
 		   if(std.isPresent()){
@@ -104,7 +115,7 @@ public class UserControllerElastic {
 		  userRepoElastic.deleteById(id);
 		  return "Document Deleted";
 	   }
-
+*/
 	
 
 	
@@ -165,16 +176,6 @@ public class UserControllerElastic {
     public String SpringBootESExample() {
         return "Welcome to Spring Boot Elastic Search Example";
     }
-	
-	
-	
-	@RequestMapping(value = "/updateing/{id}", method = RequestMethod.PUT)
-	public String updateUser(@RequestBody UserModel user) {
-		return serviceElastic.updateUser(user);
-	}
-	
-	
-	
-	
+
 	
 }

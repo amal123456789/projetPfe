@@ -20,37 +20,6 @@ public class UserServiceElastic {
 	@Autowired
 	UserRepoElastic userRepoElastic ;
 	
-	
-	
-	///////////////*************************test
-	
-	@Autowired
-	   ElasticsearchOperations operations;
-
-	public void indexData(){
-	       System.out.println("start data indexing**********");
-	       operations.putMapping(UserModel.class);
-	       System.out.println("Loading Data Employee");
-	       userRepoElastic.saveAll(getData());
-	       System.out.printf("Loading Completed");
-	   }
-
-	   private Iterable<UserModel> getData() {
-	       List<UserModel> list = new ArrayList<UserModel>();
-	       Iterable<UserModel> emps = userRepoElastic.findAll();
-	       emps.forEach(list::add);
-	       return emps;
-	   }
-	
-	/////////////////////test
-	   
-
-	   
-	/*public List<UserModel> getUserByFistname(String firstname){
-		return userRepoElastic.findUserModelByFirstName(firstname);
-	}*/
-/////////////////////test
-	
 	public List<User> getAllUsers(){
 		 try {
 			 List<UserModel> users = (List<UserModel>) userRepoElastic.findAll();

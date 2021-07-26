@@ -21,9 +21,14 @@ public class DataDestinationController {
 	DataDestinationService daServicedest;
 	
 	
+	@RequestMapping(value = "getalldatadestnew", method = RequestMethod.GET)
+	public List<DataDestination> getAllDatadests(){
+		return daServicedest.getDatadests();
+	}
+	
 	@RequestMapping(value = "getalldatadest", method = RequestMethod.GET)
 	public List<DataDestinationModel> getAllDatas(){
-		return daServicedest.getAllDataDestinations();
+		return daServicedest.getAllDataSources();
 	}
 	
 	@RequestMapping(value = "addatadest", method = RequestMethod.POST)

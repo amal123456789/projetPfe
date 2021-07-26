@@ -1,13 +1,11 @@
 package com.projetPFE.crud.entity;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import com.projetPFE.crud.model.Role;
 @Entity
@@ -15,42 +13,59 @@ import com.projetPFE.crud.model.Role;
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	private String cin;
-
+	
 	private String firstName;
 
 	private String lastName;
-
+private String username;
 	private String phone;
-
+	
 	private String mail;
 	private String login;
-
+	
 	private String password;
 
 		
 	private Role role;
+	
 
 	public User() {
 		
 	}
 
-	public User(int id, String cin, String firstName, String lastName, String phone, String mail, String login,
-			String password, Role role) {
+	
+	public User(int id, String cin, String firstName, String lastName, String username, String phone, String mail,
+			String login, String password, Role role) {
 		super();
 		this.id = id;
 		this.cin = cin;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.username = username;
 		this.phone = phone;
 		this.mail = mail;
 		this.login = login;
 		this.password = password;
 		this.role = role;
+		
 	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	
 
 	public int getId() {
 		return id;

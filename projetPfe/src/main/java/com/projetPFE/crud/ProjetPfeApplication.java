@@ -1,38 +1,178 @@
 package com.projetPFE.crud;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Map;
 
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.SearchHit;
-import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.boot.ApplicationArguments;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 
-//@EntityScan(basePackages = "com.projetPFE.crud.entity")
+
+
+
 
 @SpringBootApplication
-//@ComponentScan
+
 public class ProjetPfeApplication {
 
-    //private static final Logger logger = LogManager.getLogger(ProjetPfeApplication.class);
+   
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		SpringApplication.run(ProjetPfeApplication.class, args);
+		
+		
+		
+		/*File dir = new File("C:\\elasticsearchtools\\logstash-7.11.1\\logstash.conf");
+        String[] cmdArray = {"logstash","-f logstash.conf", "C:\\elasticsearchtools\\logstash-7.11.1\\logstash.conf"};
+        
+        Process proc = Runtime.getRuntime().exec(cmdArray, null, dir);
+        
+        PrintWriter out = new PrintWriter("C:/Product/projetPfetest_out.txt");
+        Scanner scOut = new Scanner(proc.getInputStream());
+        while (scOut.hasNextLine())
+        {
+            String line = scOut.nextLine();
+            out.println(line);
+            System.out.println(line);
+        }
+        out.close();
+        scOut.close();
+        
+        PrintWriter err = new PrintWriter("C:/Product/projetPfe/test_err.txt");
+        Scanner scErr = new Scanner(proc.getErrorStream());
+        while (scErr.hasNextLine())
+        {
+            String line = scErr.nextLine();
+            err.println(line);
+            System.err.println(line);
+        }
+        err.close();
+        scErr.close();
+        
+        System.out.println("Exit Status : " + proc.waitFor());
+  
+        
+      /* 
+         try {
+       
+
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "logstash","-f","C:/elasticsearchtools/logstash-7.11.1/logstash.conf");
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+            BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line1;
+            while (true) {
+                line1 = r.readLine();
+                if (line1 == null) { break; }
+                System.out.println(line1);
+            }
+
+            }catch(Exception e) {
+                    e.printStackTrace();
+            }
+        */
+        
+      /*  try
+        {
+                String s = "";
+                String[] cmd = new String[]{"logstash -f logstash.conf","C:\\elasticsearchtools\\logstash-7.11.1"};
+                Process processes = Runtime.getRuntime().exec(cmd);
+                BufferedReader stdInput = new BufferedReader(new InputStreamReader(processes.getInputStream()));
+                while ((s = stdInput.readLine()) != null)
+                {
+                        System.out.println(s);
+                }
+        }
+        catch(Exception ex)
+        {
+                ex.printStackTrace();
+        }
+        
+		
+		
+		
+		//ProcessBuilder processBuilder = new ProcessBuilder();
+		// Windows
+       //processBuilder.command("cmd.exe", "C:\\elasticsearchtools\\logstash-7.11.1", "logstash -f logstash.conf");
+
+       /* try {
+
+        	Process process = Runtime.getRuntime().exec(
+                    "cmd C:\\elasticsearchtools\\kibana-7.11.1-windows-x86_64\\bin kibana.bat", null, new File("C:\\elasticsearchtools\\kibana-7.11.1-windows-x86_64\\bin"));
+
+            StringBuilder output = new StringBuilder();
+
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line + "\n");
+            }
+
+            int exitVal = process.waitFor();
+            if (exitVal == 0) {
+                System.out.println("Success!");
+                System.out.println(output);
+                System.exit(0);
+            } else {
+                //abnormal...
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+		
+		
+		
+		
+		///////// test solution amine 
+		
+		/*try {
+            List<String> commands = new ArrayList<>();
+            commands.add("CMD");
+            commands.add("C://elasticsearchtools//logstash-7.11.1//"); 
+            commands.add("logstash");
+            commands.add("-f");  
+            commands.add("C://elasticsearchtools//logstash-7.11.1//logstash.conf");
+            ProcessBuilder pb = new ProcessBuilder(commands);
+             try {
+                    Process p = pb.start();
+                    int j = p.waitFor();
+                    int exitValue = p.exitValue();
+                    System.out.println("Finished with code: " + j);
+                    System.out.println("Finished with exitValue: " + exitValue);
+                } catch (Exception e) {
+                    System.out.println("exception: " + e);
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+		
+		// this is the best solution 
+		
+		/*String[] command =
+		    {
+		        "cmd",
+		    };
+		    Process p;
+			try {
+				p = Runtime.getRuntime().exec(command);
+			        new Thread(new SyncPipe(p.getErrorStream(), System.err)).start();
+		                new Thread(new SyncPipe(p.getInputStream(), System.out)).start();
+		                PrintWriter stdin = new PrintWriter(p.getOutputStream());
+		                stdin.println("logstash -f C:\\elasticsearchtools\\logstash-7.11.1\\logstash.conf");
+		                
+		                
+		                stdin.close();
+		                p.waitFor();
+		    	} catch (Exception e) {
+		 		e.printStackTrace();
+			}
+        */
+        
 		
 	}}
 	/*public void run(ApplicationArguments applicationArguments) throws Exception {

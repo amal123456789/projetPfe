@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetPFE.crud.RepositoryElastic.DataSourceRepoElastic;
+import com.projetPFE.crud.elasticService.DSservice;
+import com.projetPFE.crud.entity.DataSource;
 import com.projetPFE.crud.model.DataSourceModel;
 @RestController
 @RequestMapping("apidatasource")
@@ -27,8 +30,8 @@ public class DatasourceControllerElastic {
 	
 	@Autowired
 	DataSourceRepoElastic repo;
-	
-	
+	@Autowired
+	DSservice service;
 	@GetMapping("/allhitsource")
 	public List<DataSourceModel> getDataSourceModels(){
 		 Iterator<DataSourceModel> iterator= repo.findAll().iterator();
@@ -62,8 +65,11 @@ public class DatasourceControllerElastic {
 		return repo.findById(id);
 	}
 	
-	
-	@PutMapping("/updatedsource/{id}")
+	@RequestMapping(value = "updatedatasourceelastic", method = RequestMethod.PUT)
+	public String updateDataSource(@RequestBody DataSourceModel dataSource) {
+		return  service.updateDS(dataSource);
+	}
+	/*@PutMapping("/updatedsource/{id}")
 	   public DataSourceModel updateDataSourceModel(@PathVariable Integer id,@RequestBody DataSourceModel student){
 		   Optional<DataSourceModel> std= repo.findById(id);
 		   if(std.isPresent()){
@@ -75,14 +81,16 @@ public class DatasourceControllerElastic {
 			   return null;
 	   }
 	
-	@DeleteMapping("/deletedsource/{id}")
-	   public String deleteDataSourceModel(@PathVariable Integer id){
-		  repo.deleteById(id);
+	@DeleteMapping("/deletedsource")
+	   public String deleteDataSourceModel(@RequestBody DataSourceModel dataSource){
 		  return "Document Deleted";
-	   }
+	   }*/
 
 	
-
+	@RequestMapping(value = "deleteds", method = RequestMethod.DELETE)
+	public String removeUser(@RequestBody DataSourceModel dataSource) {
+		return service.removeData(dataSource);
+	}
 	
 	
 	

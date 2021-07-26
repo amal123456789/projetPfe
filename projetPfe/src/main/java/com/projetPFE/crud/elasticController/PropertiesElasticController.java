@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetPFE.crud.RepositoryElastic.PropertiesRepoElastic;
+import com.projetPFE.crud.elasticService.PropElasticService;
 import com.projetPFE.crud.model.DataDestinationModel;
+import com.projetPFE.crud.model.DataSourceModel;
 import com.projetPFE.crud.model.PropertiesModel;
 @RestController
 @RequestMapping("apiproperties")
@@ -28,6 +31,8 @@ public class PropertiesElasticController {
 	@Autowired
 	PropertiesRepoElastic repo;
 	
+	@Autowired
+	PropElasticService service ;
 	@GetMapping("/allhitprop")
 	public List<PropertiesModel> getPropertiesModels(){
 		 Iterator<PropertiesModel> iterator= repo.findAll().iterator();
@@ -62,7 +67,18 @@ public class PropertiesElasticController {
 	}
 	
 	
-	@PutMapping("/updateprop/{id}")
+	
+	@RequestMapping(value = "updateprop", method = RequestMethod.PUT)
+	public String updateDataSource(@RequestBody PropertiesModel prop) {
+		return  service.updateDS(prop);
+	}
+	
+	
+	@RequestMapping(value = "deleteprop", method = RequestMethod.DELETE)
+	public String removeUser(@RequestBody PropertiesModel prop) {
+		return service.removeData(prop);
+	}
+	/*@PutMapping("/updateprop/{id}")
 	   public PropertiesModel updatePropertiesModel(@PathVariable Integer id,@RequestBody PropertiesModel student){
 		   Optional<PropertiesModel> std= repo.findById(id);
 		   if(std.isPresent()){
@@ -79,7 +95,7 @@ public class PropertiesElasticController {
 		  repo.deleteById(id);
 		  return "Document Deleted";
 	   }
-
+*/
 	
 
 	

@@ -2,8 +2,6 @@ package com.projetPFE.crud.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -16,7 +14,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class DataDestinationModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_Destination;
+	private int idDestination;
 	@Field(type = FieldType.Text)
 	private String ipAdressDestination;
 	@Field(type = FieldType.Text)
@@ -35,32 +33,13 @@ public class DataDestinationModel {
 	  private DataSourceModel datasource;
 
 
-	public DataDestinationModel() {
-		
+	public int getIdDestination() {
+		return idDestination;
 	}
 
 
-	public DataDestinationModel(int id_Destination, String ipAdressDestination, String portDestination,
-			String descritpionDestination, String numUserDestination, String passwordDestination,
-			DataSourceModel datasource) {
-		super();
-		this.id_Destination = id_Destination;
-		this.ipAdressDestination = ipAdressDestination;
-		this.portDestination = portDestination;
-		this.descritpionDestination = descritpionDestination;
-		this.numUserDestination = numUserDestination;
-		this.passwordDestination = passwordDestination;
-		this.datasource = datasource;
-	}
-
-
-	public int getId_Destination() {
-		return id_Destination;
-	}
-
-
-	public void setId_Destination(int id_Destination) {
-		this.id_Destination = id_Destination;
+	public void setIdDestination(int idDestination) {
+		this.idDestination = idDestination;
 	}
 
 
@@ -126,14 +105,33 @@ public class DataDestinationModel {
 
 	@Override
 	public String toString() {
-		return "DataDestinationModel [id_Destination=" + id_Destination + ", ipAdressDestination=" + ipAdressDestination
+		return "DataDestinationModel [idDestination=" + idDestination + ", ipAdressDestination=" + ipAdressDestination
 				+ ", portDestination=" + portDestination + ", descritpionDestination=" + descritpionDestination
 				+ ", numUserDestination=" + numUserDestination + ", passwordDestination=" + passwordDestination
 				+ ", datasource=" + datasource + "]";
 	}
 
 
-	
+	public DataDestinationModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public DataDestinationModel(int idDestination, String ipAdressDestination, String portDestination,
+			String descritpionDestination, String numUserDestination, String passwordDestination,
+			DataSourceModel datasource) {
+		super();
+		this.idDestination = idDestination;
+		this.ipAdressDestination = ipAdressDestination;
+		this.portDestination = portDestination;
+		this.descritpionDestination = descritpionDestination;
+		this.numUserDestination = numUserDestination;
+		this.passwordDestination = passwordDestination;
+		this.datasource = datasource;
+	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -154,7 +152,7 @@ public class DataDestinationModel {
 				return false;
 		} else if (!descritpionDestination.equals(other.descritpionDestination))
 			return false;
-		if (id_Destination != other.id_Destination)
+		if (idDestination != other.idDestination)
 			return false;
 		if (ipAdressDestination == null) {
 			if (other.ipAdressDestination != null)
@@ -180,5 +178,6 @@ public class DataDestinationModel {
 	}
 
 
+	
 	
 }

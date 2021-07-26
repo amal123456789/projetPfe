@@ -48,7 +48,7 @@ public List<DataSourceModel> getAllDataSources(){
 	public String removeData(DataSource dataSource) {
 		try {
 			if (dataSourceRepository.existsBySchemaUrl(dataSource.getSchemaUrl())) {
-				dataSourceRepository.save(dataSource);
+				dataSourceRepository.delete(dataSource);
 				return "data deleted successfully.";
 			} else {
 				return "data does not exist.";
@@ -60,7 +60,7 @@ public List<DataSourceModel> getAllDataSources(){
 	
 	public String updateData(DataSource dataSource) {
 		try {
-			if (dataSourceRepository.existsBySchemaUrl(dataSource.getSchemaUrl())) {
+			if (dataSourceRepository.existsById(dataSource.getIdSourceSequence())) {
 				dataSourceRepository.save(dataSource);
 				return "data updated successfully.";
 			} else {

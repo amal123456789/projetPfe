@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class DataDestination {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idDestination;
 	
 	private String ipAdressDestination;
@@ -25,14 +25,75 @@ public class DataDestination {
 	@ManyToOne
 	  @JoinColumn(name="datasource")
 	  private DataSource datasource;
-	
-	
-	
-	public DataDestination() {
-		
+
+	public int getIdDestination() {
+		return idDestination;
 	}
 
+	public void setIdDestination(int idDestination) {
+		this.idDestination = idDestination;
+	}
 
+	public String getIpAdressDestination() {
+		return ipAdressDestination;
+	}
+
+	public void setIpAdressDestination(String ipAdressDestination) {
+		this.ipAdressDestination = ipAdressDestination;
+	}
+
+	public String getPortDestination() {
+		return portDestination;
+	}
+
+	public void setPortDestination(String portDestination) {
+		this.portDestination = portDestination;
+	}
+
+	public String getDescritpionDestination() {
+		return descritpionDestination;
+	}
+
+	public void setDescritpionDestination(String descritpionDestination) {
+		this.descritpionDestination = descritpionDestination;
+	}
+
+	public String getNumUserDestination() {
+		return numUserDestination;
+	}
+
+	public void setNumUserDestination(String numUserDestination) {
+		this.numUserDestination = numUserDestination;
+	}
+
+	public String getPasswordDestination() {
+		return passwordDestination;
+	}
+
+	public void setPasswordDestination(String passwordDestination) {
+		this.passwordDestination = passwordDestination;
+	}
+
+	public DataSource getDatasource() {
+		return datasource;
+	}
+
+	public void setDatasource(DataSource datasource) {
+		this.datasource = datasource;
+	}
+
+	@Override
+	public String toString() {
+		return "DataDestination [idDestination=" + idDestination + ", ipAdressDestination=" + ipAdressDestination
+				+ ", portDestination=" + portDestination + ", descritpionDestination=" + descritpionDestination
+				+ ", numUserDestination=" + numUserDestination + ", passwordDestination=" + passwordDestination
+				+ ", datasource=" + datasource + "]";
+	}
+
+	public DataDestination() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public DataDestination(int idDestination, String ipAdressDestination, String portDestination,
 			String descritpionDestination, String numUserDestination, String passwordDestination,
@@ -46,105 +107,6 @@ public class DataDestination {
 		this.passwordDestination = passwordDestination;
 		this.datasource = datasource;
 	}
-
-
-
-	public int getIdDestination() {
-		return idDestination;
-	}
-
-
-
-	public void setIdDestination(int idDestination) {
-		this.idDestination = idDestination;
-	}
-
-
-
-	public String getIpAdressDestination() {
-		return ipAdressDestination;
-	}
-
-
-
-	public void setIpAdressDestination(String ipAdressDestination) {
-		this.ipAdressDestination = ipAdressDestination;
-	}
-
-
-
-	public String getPortDestination() {
-		return portDestination;
-	}
-
-
-
-	public void setPortDestination(String portDestination) {
-		this.portDestination = portDestination;
-	}
-
-
-
-	public String getDescritpionDestination() {
-		return descritpionDestination;
-	}
-
-
-
-	public void setDescritpionDestination(String descritpionDestination) {
-		this.descritpionDestination = descritpionDestination;
-	}
-
-
-
-	public String getNumUserDestination() {
-		return numUserDestination;
-	}
-
-
-
-	public void setNumUserDestination(String numUserDestination) {
-		this.numUserDestination = numUserDestination;
-	}
-
-
-
-	public String getPasswordDestination() {
-		return passwordDestination;
-	}
-
-
-
-	public void setPasswordDestination(String passwordDestination) {
-		this.passwordDestination = passwordDestination;
-	}
-
-
-
-	public DataSource getDatasource() {
-		return datasource;
-	}
-
-
-
-	public void setDatasource(DataSource datasource) {
-		this.datasource = datasource;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "DataDestination [idDestination=" + idDestination + ", ipAdressDestination=" + ipAdressDestination
-				+ ", portDestination=" + portDestination + ", descritpionDestination=" + descritpionDestination
-				+ ", numUserDestination=" + numUserDestination + ", passwordDestination=" + passwordDestination
-				+ ", datasource=" + datasource + "]";
-	}
-
-
-
-	
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -189,10 +151,9 @@ public class DataDestination {
 			return false;
 		return true;
 	}
-
-
-
 	
-
+	
+	
+	
 	
 }

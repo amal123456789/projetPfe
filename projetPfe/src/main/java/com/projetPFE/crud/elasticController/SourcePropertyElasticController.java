@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetPFE.crud.RepositoryElastic.SourcePropertyRepoElastic;
+import com.projetPFE.crud.elasticService.SourcePropService;
+import com.projetPFE.crud.model.DataSourceModel;
 import com.projetPFE.crud.model.SourcePropertiesModel;
 
 @RestController
@@ -29,7 +32,8 @@ public class SourcePropertyElasticController {
 	
 	@Autowired
 		SourcePropertyRepoElastic repo;
-		
+	@Autowired
+	SourcePropService service ;
 		
 		@GetMapping("/allhitsourceprop")
 		public List<SourcePropertiesModel> getSourcePropertiesModels(){
@@ -65,7 +69,7 @@ public class SourcePropertyElasticController {
 		}
 		
 		
-		@PutMapping("/updatesourceprop/{id}")
+		/*@PutMapping("/updatesourceprop/{id}")
 		   public SourcePropertiesModel updateSourcePropertiesModel(@PathVariable Integer id,@RequestBody SourcePropertiesModel student){
 			   Optional<SourcePropertiesModel> std= repo.findById(id);
 			   if(std.isPresent()){
@@ -81,8 +85,16 @@ public class SourcePropertyElasticController {
 		   public String deleteSourcePropertiesModel(@PathVariable Integer id){
 			  repo.deleteById(id);
 			  return "Document Deleted";
-		   }
-
+		   }*/
+		@RequestMapping(value = "updatesourceprop", method = RequestMethod.PUT)
+		public String updateDataSource(@RequestBody SourcePropertiesModel dataSource) {
+			return  service.updateDS(dataSource);
+		}
+		
+		@RequestMapping(value = "deletesourcespop", method = RequestMethod.DELETE)
+		public String removeUser(@RequestBody SourcePropertiesModel dataSource) {
+			return service.removeData(dataSource);
+		}
 		
 
 	}

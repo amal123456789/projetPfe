@@ -1,6 +1,7 @@
 package com.projetPFE.crud.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -8,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projetPFE.crud.entity.DataDestination;
+import com.projetPFE.crud.entity.DataSource;
 import com.projetPFE.crud.model.DataDestinationModel;
+import com.projetPFE.crud.model.DataSourceModel;
 import com.projetPFE.crud.repository.DataDestinationRepository;
 
 
@@ -18,17 +21,31 @@ public class DataDestinationService {
 	@Autowired
 	DataDestinationRepository datadestrepo;
 	
-public List<DataDestinationModel> getAllDataDestinations(){
+	public List<DataDestination> getDatadests(){
+		 Iterator<DataDestination> iterator= datadestrepo.findAll().iterator();
+		 List<DataDestination> students=new ArrayList<DataDestination>();
+		 while(iterator.hasNext()){
+			 students.add(iterator.next());
+		 }
+		 return students;
+	}
+	
+	
+	
+	
+	
+	
+public List<DataDestinationModel> getAllDataSources(){
 		
 		try {
-			List<DataDestination> datadestinations = datadestrepo.findAll();
-			List<DataDestinationModel> customDataDestinations = new ArrayList<>();
-			datadestinations.stream().forEach(e -> {
-				DataDestinationModel datadestination = new DataDestinationModel();
-				BeanUtils.copyProperties(e, datadestination);
-				customDataDestinations.add(datadestination);
+			List<DataDestination> datasources = datadestrepo.findAll();
+			List<DataDestinationModel> customDataSources = new ArrayList<>();
+			datasources.stream().forEach(e -> {
+				DataDestinationModel datasource = new DataDestinationModel();
+				BeanUtils.copyProperties(e, datasource);
+				customDataSources.add(datasource);
 			});
-			return customDataDestinations;
+			return customDataSources;
 		}catch(Exception e) {
 			throw e;
 		}

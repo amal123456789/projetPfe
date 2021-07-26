@@ -12,6 +12,9 @@ import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Document(indexName = "sourceproperty_new", createIndex = true)
 
@@ -23,9 +26,14 @@ public class SourcePropertiesModel {
 	@Field(type = FieldType.Text)
 
 	private String value;
+	
 	@Field(type = FieldType.Text)
 
 	private String loginModif;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
 	@Field(type = FieldType.Date, format = DateFormat.basic_date)
 
 	private Date dateModif;

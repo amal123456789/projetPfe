@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetPFE.crud.RepositoryElastic.DataDestinationRepoElastic;
+import com.projetPFE.crud.elasticService.DataDestService;
 import com.projetPFE.crud.model.DataDestinationModel;
 import com.projetPFE.crud.model.UserModel;
 
@@ -35,7 +37,9 @@ public class DataDestinationControllerE {
 	//private static final Logger logger=LoggerFactory.getLogger(DataDestinationControllerE.class);
 	@Autowired
 	DataDestinationRepoElastic repo;
-
+	
+	@Autowired
+	DataDestService service;
 	@GetMapping("/allhitdatadestination")
 	public List<DataDestinationModel> getDataDestinationModels(){
 		 Iterator<DataDestinationModel> iterator= repo.findAll().iterator();
@@ -50,7 +54,7 @@ public class DataDestinationControllerE {
 	@PostMapping("/ajouterdtdest")
 	public String addDataDestinationModel(@RequestBody DataDestinationModel user) {
 		try {
-			if (!repo.existsById(user.getId_Destination())) {
+			if (!repo.existsById(user.getIdDestination())) {
 				repo.save(user);
 				return "Employee added successfully";
 			}else {
@@ -70,7 +74,7 @@ public class DataDestinationControllerE {
 	}
 	
 	
-	@PutMapping("/updateddtdest/{id}")
+	/*@PutMapping("/updateddtdest/{id}")
 	   public DataDestinationModel updateDataDestinationModel(@PathVariable Integer id,@RequestBody DataDestinationModel student){
 		   Optional<DataDestinationModel> std= repo.findById(id);
 		   if(std.isPresent()){
@@ -86,10 +90,18 @@ public class DataDestinationControllerE {
 	   public String deleteDataDestinationModel(@PathVariable Integer id){
 		  repo.deleteById(id);
 		  return "Document Deleted";
-	   }
+	   }*/
 
 	
+	@RequestMapping(value = "updateddtdest", method = RequestMethod.PUT)
+	public String updateDataSource(@RequestBody DataDestinationModel data) {
+		return  service.updateDS(data);
+	}
 
+	@RequestMapping(value = "deleteddatadest", method = RequestMethod.DELETE)
+	public String removeUser(@RequestBody DataDestinationModel data) {
+		return service.removeData(data);
+	}
 	
 	
 

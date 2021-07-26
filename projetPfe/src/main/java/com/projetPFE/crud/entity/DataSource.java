@@ -8,9 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Entity
 //@Document(indexName = "dataSource", shards = 1, replicas = 0, refreshInterval = "5s", createIndex = true)
@@ -18,23 +15,12 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class DataSource {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idSourceSequence;
-    //@Field(type = FieldType.Text)
-
-	private String schemaUrl;
-    //@Field(type = FieldType.Text)
-
-	private String systemName;
-    //@Field(type = FieldType.Text)
-
+    private String schemaUrl;
+    private String systemName;
 	private String systemCode;
-    //@Field(type = FieldType.Text)
-
-	private String descritpionSource;
-	
-	
-	
+    private String descritpionSource;
 	@ManyToOne
 	  @JoinColumn(name="user")
 	  private User utilisateur;
